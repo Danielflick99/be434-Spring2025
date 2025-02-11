@@ -28,8 +28,14 @@ def main():
 
     args = get_args()
     strand = args.DNA
+    tetra_freq = {
+        "A": strand.count("A"),
+        "C": strand.count("C"),
+        "G": strand.count("G"),
+        "T": strand.count("T"),
+    }
 
-    print(strand.count("A"), strand.count("C"), strand.count("G"), strand.count("T"))
+    print(*tetra_freq.values())
 
 
 # --------------------------------------------------
