@@ -58,7 +58,7 @@ def test_lowercase() -> None:
 def test_input1() -> None:
     """ Runs on file input """
 
-    file, expected = TEST1
+    file, expected = './inputs/input1.txt', './inputs/output1.txt'
     rv, out = getstatusoutput(f'{PRG} {file}')
     assert rv == 0
     assert out == open(expected).read().rstrip()
@@ -68,7 +68,7 @@ def test_input1() -> None:
 def test_input2() -> None:
     """ Runs on file input """
 
-    file, expected = TEST2
+    file, expected = './inputs/input2.txt', './inputs/output2.txt'
     rv, out = getstatusoutput(f'{PRG} {file}')
     assert rv == 0
     assert out == open(expected).read().rstrip()
