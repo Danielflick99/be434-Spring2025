@@ -29,7 +29,7 @@ def get_args():
 
     parser.add_argument(
         "-o",
-        "--output",
+        "--out_dir",
         metavar="str",
         type=str,
         help="Output directory name",
@@ -55,13 +55,13 @@ def main():
 
     n_seq = 0
     for file in args.file:
-        # print(f'Processing file {file.name}')
-        out_name = file.name[7:]
-        # print(out_name)
-        out_file = args.output + "/" + out_name
-        # print(out_file)
-        # print(type(out_file))
-        os.makedirs(args.output, exist_ok=True)
+
+        # out_name = file.name[7:]
+        out_name = os.path.basename(file.name)
+
+        out_file = os.path.join(args.out_dir, out_name)
+
+        os.makedirs(args.out_dir, exist_ok=True)
         out_fh = open(out_file, "wt")
 
         for line in file:
@@ -78,7 +78,7 @@ def main():
             seq_phrase = "sequence"
 
     print(
-        f'Done, wrote {n_seq} {seq_phrase} in {len(args.file)} {file_phrase} to directory "{args.output}".'
+        f'Done, wrote {n_seq} {seq_phrase} in {len(args.file)} {file_phrase} to directory "{args.out_dir}".'
     )
 
 
