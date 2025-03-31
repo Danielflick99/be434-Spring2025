@@ -6,7 +6,9 @@ Purpose: Finding Common Words
 """
 
 import argparse
-from subprocess import STDOUT
+
+# from subprocess import STDOUT
+import sys
 import os
 
 
@@ -20,19 +22,11 @@ def get_args():
     )
 
     parser.add_argument(
-        "FILE1",
-        help="A readable file",
-        metavar="FILE",
-        type=argparse.FileType("rt"),
-        default=None,
+        "FILE1", help="A readable file", metavar="FILE", type=argparse.FileType("rt")
     )
 
     parser.add_argument(
-        "FILE2",
-        help="A readable file",
-        metavar="FILE",
-        type=argparse.FileType("rt"),
-        default=None,
+        "FILE2", help="A readable file", metavar="FILE", type=argparse.FileType("rt")
     )
 
     parser.add_argument(
@@ -41,7 +35,7 @@ def get_args():
         help="Output filename",
         metavar="str",
         type=str,
-        default=STDOUT,
+        default=sys.stdout,
     )
 
     return parser.parse_args()
@@ -61,7 +55,11 @@ def main():
 
     common_words = set(strand1_w).intersection(strand2_w)
 
-    print("\n".join(sorted(common_words)))
+    if args.outfile == sys.stdout:
+        print("\n".join(sorted(common_words)))
+    else:
+        out_fh = open(args.outfile, "wt")
+        out_fh.write("\n".join(sorted(common_words)) + "\n")
 
 
 # --------------------------------------------------
