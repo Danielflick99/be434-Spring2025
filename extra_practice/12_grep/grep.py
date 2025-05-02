@@ -62,6 +62,7 @@ def main():
 
     for filename in args.infile:
         for line in open(filename):
+            +
             if (
                 re.search(pattern, line, re.IGNORECASE)
                 if args.insensitive
